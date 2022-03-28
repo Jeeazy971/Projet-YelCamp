@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Campground = require('../models/yelcamp.model');
+const Campground = require('../models/yelpcamp.model');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 
@@ -13,7 +13,7 @@ async function seedDB() {
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
+            image: 'https://source.unsplash.com/user/wood',
             description:
                 'Lorem ipsum dolor sit amet. Aut impedit Quis qui asperiores quae est enim distinctio sit quis cupiditate eum exercitationem nisi et quasi itaque? Id nobis nihil ab quidem inventore et libero illo.',
             price,

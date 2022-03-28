@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">Nouveau camping</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds" method="POST">
+        <form action="/campgrounds" method="POST" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="title">Titre</label>
                 <input
@@ -11,7 +11,9 @@
                     name="campground[title]"
                     id="title"
                     placeholder="Titre du camping"
+                    required
                 />
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Localisation</label>
@@ -21,7 +23,9 @@
                     name="campground[location]"
                     id="title"
                     placeholder="localisation du camping"
+                    required
                 />
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image URL</label>
@@ -31,7 +35,9 @@
                     name="campground[image]"
                     id="title"
                     placeholder="image"
+                    required
                 />
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Prix du camping</label>
@@ -45,7 +51,9 @@
                         id="price"
                         aria-describedby="price-label"
                         name="campground[price]"
+                        required
                     />
+                    <div class="valid-feedback">Champ rempli</div>
                 </div>
             </div>
 
@@ -57,7 +65,9 @@
                     name="campground[description]"
                     id="title"
                     placeholder="description"
+                    required
                 ></textarea>
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success" type="submit">Ajouter le camping</button>
