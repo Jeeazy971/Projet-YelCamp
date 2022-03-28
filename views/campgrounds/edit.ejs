@@ -3,7 +3,12 @@
 <div class="row">
     <h1 class="text-center">Modification du camping</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds/<%= campgroundID._id %>?_method=PUT" method="POST">
+        <form
+            action="/campgrounds/<%= campgroundID._id %>?_method=PUT"
+            method="POST"
+            novalidate
+            class="validated-form"
+        >
             <div class="mb-3">
                 <label class="form-label" for="title">Titre</label>
                 <input
@@ -12,8 +17,10 @@
                     name="campground[title]"
                     id="title"
                     placeholder="Titre du camping"
+                    required
                     value="<%= campgroundID.title %>"
                 />
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Localisation</label>
@@ -23,8 +30,10 @@
                     name="campground[location]"
                     id="title"
                     placeholder="localisation du camping"
+                    required
                     value="<%= campgroundID.location %>"
                 />
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image URL</label>
@@ -34,8 +43,10 @@
                     name="campground[image]"
                     id="title"
                     placeholder="image"
+                    required
                     value="<%= campgroundID.image %>"
                 />
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Prix du camping</label>
@@ -49,8 +60,10 @@
                         id="price"
                         aria-describedby="price-label"
                         name="campground[price]"
+                        required
                         value="<%= campgroundID.price %>"
                     />
+                    <div class="valid-feedback">Champ rempli</div>
                 </div>
             </div>
 
@@ -61,9 +74,12 @@
                     type="text"
                     name="campground[description]"
                     id="title"
-                    placeholder="description">
+                    required
+                    placeholder="description"
+                >
                         <%= campgroundID.description %>
                 </textarea>
+                <div class="valid-feedback">Champ rempli</div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success" type="submit">Modifier le camping</button>
