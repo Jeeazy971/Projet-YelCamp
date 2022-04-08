@@ -1,3 +1,7 @@
+const { campgroundSchema, reviewSchema } = require('./schemas');
+const ExpressError = require('./utils/ExpressError');
+const Campground = require('./models/campground.model');
+
 const isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl;
@@ -7,4 +11,34 @@ const isLoggedIn = (req, res, next) => {
     next();
 };
 
-module.exports = isLoggedIn;
+const validateCampground = (req, res, next) => {
+    const { error } = campgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
+const isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const campground = await Campground.findById(id);
+    if (!campground.author.equals(req.user._id)) {
+        req.flash('error', "Vous n'avez pas la permission de faire cette action !");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    next();
+};
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
+module.exports = { isLoggedIn, isAuthor, validateCampground, validateReview };

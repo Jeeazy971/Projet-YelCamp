@@ -3,27 +3,11 @@ const express = require('express');
 const router = express.Router();
 
 /***** MODELS  *****/
-const Campground = require('../models/yelpcamp.model');
-
-/***** GESTION D'ERREUR DANS LES INPUTS VIA LE MODULE JOI *****/
-const validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
-const isLoggedIn = require('../middleware');
-
-/***** VALIDATION SCHEMAS  *****/
-const { campgroundSchema } = require('../schemas');
+const Campground = require('../models/campground.model');
 
 /***** GESTIONNAIRE D'ERREURS  *****/
 const catchAsync = require('../utils/catchAsync');
-const ExpressError = require('../utils/ExpressError');
+const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 
 /**** RECUPERATION DES CAMPINGS ****/
 router.get(
@@ -45,6 +29,7 @@ router.post(
     validateCampground,
     catchAsync(async (req, res) => {
         const campground = new Campground(req.body.campground);
+        campground.author = req.user._id;
         await campground.save();
         req.flash('success', "Création réussie d'un nouveau terrain de camping !");
         res.redirect(`/campgrounds/${campground._id}`);
@@ -55,7 +40,9 @@ router.post(
 router.get(
     '/:id',
     catchAsync(async (req, res) => {
-        const campgroundID = await Campground.findById(req.params.id).populate('reviews');
+        const campgroundID = await Campground.findById(req.params.id)
+            .populate('reviews')
+            .populate('author');
         if (!campgroundID) {
             req.flash('error', 'Impossible de trouver ce camping');
             res.redirect('/campgrounds');
@@ -68,8 +55,10 @@ router.get(
 router.get(
     '/:id/edit',
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res) => {
-        const campgroundID = await Campground.findById(req.params.id);
+        const { id } = req.params;
+        const campgroundID = await Campground.findById(id);
         if (!campgroundID) {
             req.flash('error', 'Impossible de trouver ce camping');
             res.redirect('/campgrounds');
@@ -81,6 +70,7 @@ router.get(
 router.put(
     '/:id',
     isLoggedIn,
+    isAuthor,
     validateCampground,
     catchAsync(async (req, res) => {
         const { id } = req.params;
@@ -96,6 +86,7 @@ router.put(
 router.delete(
     '/:id',
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Campground.findByIdAndDelete(id);

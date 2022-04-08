@@ -1,42 +1,31 @@
 /***** PACKAGES *****/
 const express = require('express');
+const { validateReview, isLoggedIn } = require('../middleware');
 
 /**
  * mergeParams permet d'accéder a l'ID (:id)
- * de ma route ceci dessous dans la partie app.js à la ligne 52
+ * de ma route ceci dessous dans la partie app.js à la ligne 65
  * app.use('/campgrounds/:id/reviews', reviewsRoutes);
  **/
 const router = express.Router({ mergeParams: true });
 
 /***** MODELS  *****/
-const Campground = require('../models/yelpcamp.model');
+const Campground = require('../models/campground.model');
 const Review = require('../models/review.model');
 
 /***** GESTIONNAIRE D'ERREURS  *****/
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 
-/***** VALIDATION SCHEMAS  *****/
-const { reviewSchema } = require('../schemas');
-
-/**** GESTION DES ERREURS DANS LES INPUTS VIA LE MODULE JOI ****/
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
 /**** CREATION D'UN COMMENTAIRE ****/
 router.post(
     '/',
+    isLoggedIn,
     validateReview,
     catchAsync(async (req, res) => {
         const campground = await Campground.findById(req.params.id);
         const review = new Review(req.body.review);
+        review.author = req.user._id;
         campground.reviews.push(review);
         await review.save();
         await campground.save();
@@ -48,6 +37,7 @@ router.post(
 /**** SUPPRESSION D'UN COMMENTAIRE ****/
 router.delete(
     '/:reviewId',
+    isLoggedIn,
     catchAsync(async (req, res) => {
         const { id, reviewId } = req.params;
         await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
