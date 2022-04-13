@@ -1,6 +1,6 @@
 /***** PACKAGES *****/
 const express = require('express');
-const { validateReview, isLoggedIn } = require('../middleware');
+const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
 
 /**
  * mergeParams permet d'accéder a l'ID (:id)
@@ -9,42 +9,17 @@ const { validateReview, isLoggedIn } = require('../middleware');
  **/
 const router = express.Router({ mergeParams: true });
 
-/***** MODELS  *****/
-const Campground = require('../models/campground.model');
-const Review = require('../models/review.model');
+/***** CONTROLLERS  *****/
+const reviews = require('../controllers/reviews.controllers');
 
 /***** GESTIONNAIRE D'ERREURS  *****/
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 
 /**** CREATION D'UN COMMENTAIRE ****/
-router.post(
-    '/',
-    isLoggedIn,
-    validateReview,
-    catchAsync(async (req, res) => {
-        const campground = await Campground.findById(req.params.id);
-        const review = new Review(req.body.review);
-        review.author = req.user._id;
-        campground.reviews.push(review);
-        await review.save();
-        await campground.save();
-        req.flash('success', 'Nouvelle revue créée !');
-        res.redirect(`/campgrounds/${campground._id}`);
-    }),
-);
+router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReview));
 
 /**** SUPPRESSION D'UN COMMENTAIRE ****/
-router.delete(
-    '/:reviewId',
-    isLoggedIn,
-    catchAsync(async (req, res) => {
-        const { id, reviewId } = req.params;
-        await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-        await Review.findById(reviewId);
-        req.flash('success', 'Avis supprimé avec succès !');
-        res.redirect(`/campgrounds/${id}`);
-    }),
-);
+router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview));
 
 module.exports = router;

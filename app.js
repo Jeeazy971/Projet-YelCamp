@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+console.log(process.env.SECRET);
 /***** PACKAGES *****/
 const express = require('express');
 const path = require('path');
@@ -9,6 +13,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const app = express();
 
+/***** MODEL *****/
 const User = require('./models/user.model');
 
 /***** GESTIONNAIRE D'ERREURS *****/
