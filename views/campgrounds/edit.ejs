@@ -8,6 +8,7 @@
             method="POST"
             novalidate
             class="validated-form"
+            enctype="multipart/form-data"
         >
             <div class="mb-3">
                 <label class="form-label" for="title">Titre</label>
@@ -20,7 +21,7 @@
                     required
                     value="<%= campgroundID.title %>"
                 />
-                <div class="valid-feedback">Champ rempli</div>
+                <div class="valid-feedback">Champ valide !</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Localisation</label>
@@ -33,20 +34,21 @@
                     required
                     value="<%= campgroundID.location %>"
                 />
-                <div class="valid-feedback">Champ rempli</div>
+                <div class="valid-feedback">Champ valide</div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="image">Image URL</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    name="campground[image]"
-                    id="title"
-                    placeholder="image"
-                    required
-                    value="<%= campgroundID.image %>"
-                />
-                <div class="valid-feedback">Champ rempli</div>
+                <label for="image" class="form-label">Ajouter plus d'images</label>
+                <input type="file" class="form-control" id="image" name="image" multiple>
+                <div class="valid-feedback">Champ valide</div>
+            </div>
+            <div class="mb-3">
+                <% campgroundID.images.forEach(function(img, i) { %>
+                    <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" name="deleteImages[]" id="image-<%= i %>" value="<%= img.filename %>"/>
+                    </div>
+                    <label for="image-<%= i %>">Supprimer ?</label>
+               <% }) %> 
             </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Prix du camping</label>
@@ -63,7 +65,7 @@
                         required
                         value="<%= campgroundID.price %>"
                     />
-                    <div class="valid-feedback">Champ rempli</div>
+                    <div class="valid-feedback">Champ valide</div>
                 </div>
             </div>
 
@@ -79,7 +81,7 @@
                 >
                         <%= campgroundID.description %>
                 </textarea>
-                <div class="valid-feedback">Champ rempli</div>
+                <div class="valid-feedback">Champ valide</div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success" type="submit">Modifier le camping</button>

@@ -11,10 +11,19 @@ mongoose
         console.log(err);
     });
 
+const imageSchema = new Schema({
+    url: String,
+    filename: String,
+});
+
+imageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
 const campgroundSchema = new Schema({
     title: String,
     price: String,
-    image: String,
+    images: [imageSchema],
     description: String,
     location: String,
     author: {

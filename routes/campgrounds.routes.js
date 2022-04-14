@@ -17,11 +17,12 @@ router
     /**** RECUPERATION DES CAMPINGS ****/
     .get(catchAsync(campgrounds.index))
     /**** CREATION DU CAMPING ****/
-    // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
-    .post(upload.array('image'), (req, res) => {
-        console.log(req.body, req.files);
-        res.send('fonctionne');
-    });
+    .post(
+        isLoggedIn,
+        upload.array('image'),
+        validateCampground,
+        catchAsync(campgrounds.createCampground),
+    );
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm);
 
@@ -33,6 +34,7 @@ router
     .put(
         isLoggedIn,
         isAuthor,
+        upload.array('image'),
         validateCampground,
         catchAsync(campgrounds.updateCampground),
     )

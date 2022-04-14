@@ -14,10 +14,19 @@ async function seedDB() {
             author: '624ed8908afe85a2e01ed2c3',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/user/wood',
             description:
                 'Lorem ipsum dolor sit amet. Aut impedit Quis qui asperiores quae est enim distinctio sit quis cupiditate eum exercitationem nisi et quasi itaque? Id nobis nihil ab quidem inventore et libero illo.',
             price,
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/dqr1seyu2/image/upload/v1649935721/YelpCamp/jsya4ezocslht6p27fdi.jpg',
+                    filename: 'YelpCamp/jsya4ezocslht6p27fdi',
+                },
+                {
+                    url: 'https://res.cloudinary.com/dqr1seyu2/image/upload/v1649935721/YelpCamp/rhga4tomvqknkfmuzeqf.png',
+                    filename: 'YelpCamp/rhga4tomvqknkfmuzeqf',
+                },
+            ],
         });
         await camp.save();
     }
