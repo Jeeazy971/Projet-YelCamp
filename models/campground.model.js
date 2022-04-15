@@ -3,6 +3,19 @@ const Review = require('./review.model');
 const MongoDBStore = require('connect-mongo');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret';
+
+
+const Schema = mongoose.Schema;
+mongoose
+    .connect(dbUrl)
+    .then(() => {
+        console.log('Connexion à la BDD réussie');
+    })
+    .catch((err) => {
+        console.log('Connexion impossible à la BDD');
+        console.log(err);
+    });
 
 const store = MongoDBStore.create({
     mongoUrl: dbUrl,
@@ -15,17 +28,6 @@ const store = MongoDBStore.create({
 store.on('error', function (err) {
     console.log('ERREUR SESSION STORE', err);
 });
-
-const Schema = mongoose.Schema;
-mongoose
-    .connect(dbUrl)
-    .then(() => {
-        console.log('Connexion à la BDD réussie');
-    })
-    .catch((err) => {
-        console.log('Connexion impossible à la BDD');
-        console.log(err);
-    });
 
 const ImageSchema = new Schema({
     url: String,
