@@ -1,34 +1,59 @@
 <% layout('layouts/boilerplate') -%>
 
-<h1>Connexion</h1>
-
-<form action="/login" method="POST" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Pseudo</label>
-        <input
-            class="form-control"
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Votre pseudo"
-            autocomplete="off"
-            required
-        />
-        <div class="valid-feedback">Champ rempli</div>
+<div class="container d-flex justify-content-center align-items-center mt-2">
+    <div class="row">
+        <div class="container-fluid col-md-6 offset-md-4 col-xl-10 offset-xl-2">
+            <div class="col-md-6 offset-md-3 mb-3">
+                <div class="card shadow">
+                    <img
+                        src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                        alt=""
+                        class="card-img-top"
+                    />
+                    <div class="card-body">
+                        <h1 class="card-title">Connexion</h1>
+                        <form
+                            action="/login"
+                            method="POST"
+                            class="validated-form"
+                            novalidate
+                        >
+                            <div class="mb-3">
+                                <label class="form-label" for="username">Pseudo</label>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder="Votre pseudo"
+                                    autocomplete="off"
+                                    required
+                                />
+                                <div class="valid-feedback">Champ rempli</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="password"
+                                    >Mot de passe</label
+                                >
+                                <input
+                                    class="form-control"
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="mot de passe"
+                                    required
+                                />
+                                <div class="valid-feedback">Champ rempli</div>
+                            </div>
+                            <div class="d-grid col-12">
+                                <button class="btn btn-success" type="submit">
+                                    Connexion
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Mot de passe</label>
-        <input
-            class="form-control"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="mot de passe"
-            required
-        />
-        <div class="valid-feedback">Champ rempli</div>
-    </div>
-    <div class="mb-3">
-        <button class="btn btn-success" type="submit">Connexion</button>
-    </div>
-</form>
+</div>

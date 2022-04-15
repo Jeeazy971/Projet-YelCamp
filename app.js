@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+// mongodb+srv://admin-josue:<password>@yelpcamp.msqsf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
 /***** PACKAGES *****/
 const express = require('express');
 const path = require('path');
@@ -11,6 +13,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const MongoDBStore = require('connect-mongo');
+// const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb://localhost:27017/yelp-camp';
 const app = express();
 
 /***** MODEL *****/
@@ -31,13 +36,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'thisshouldbeabettersecret',
+    },
+});
+
+store.on('error', function (err) {
+    console.log('ERREUR SESSION STORE', err);
+});
+
 /**** SESSION ****/
 const sessionConfig = {
+    store: store,
+    name: 'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true, pour https
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7,
     },

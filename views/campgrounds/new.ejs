@@ -1,71 +1,94 @@
 <% layout('layouts/boilerplate') -%>
 <div class="row">
-    <h1 class="text-center">Nouveau camping</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label class="form-label" for="title">Titre</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    name="campground[title]"
-                    id="title"
-                    placeholder="Titre du camping"
-                    required
-                />
-                <div class="valid-feedback">Champ valide !</div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="location">Localisation</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    name="campground[location]"
-                    id="title"
-                    placeholder="localisation du camping"
-                    required
-                />
-                <div class="valid-feedback">Champ valide !</div>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Choisissez vos image(s)</label>
-                <input class="form-control" type="file" id="image" name="image" multiple>
-                <div class="valid-feedback">Champ valide !</div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="price">Prix du camping</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="price-label">€</span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="0.00"
-                        aria-label="Prix"
-                        id="price"
-                        aria-describedby="price-label"
-                        name="campground[price]"
-                        required
-                    />
-                    <div class="valid-feedback">Champ valide !</div>
-                </div>
-            </div>
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="card-title">Nouveau camping</h1>
+                <form
+                    action="/campgrounds"
+                    method="POST"
+                    novalidate
+                    class="validated-form"
+                    enctype="multipart/form-data"
+                >
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Titre</label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="campground[title]"
+                            id="title"
+                            placeholder="Titre du camping"
+                            required
+                        />
+                        <div class="valid-feedback">Champ valide !</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="location">Localisation</label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="campground[location]"
+                            id="title"
+                            placeholder="localisation du camping"
+                            required
+                        />
+                        <div class="valid-feedback">Champ valide !</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label"
+                            >Choisissez vos image(s)</label
+                        >
+                        <input
+                            class="form-control"
+                            type="file"
+                            id="image"
+                            name="image"
+                            multiple
+                        />
+                        <div class="valid-feedback">Champ valide !</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="price">Prix du camping</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="price-label">€</span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                aria-label="Prix"
+                                id="price"
+                                aria-describedby="price-label"
+                                name="campground[price]"
+                                required
+                            />
+                            <div class="valid-feedback">Champ valide !</div>
+                        </div>
+                    </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea
-                    class="form-control"
-                    type="text"
-                    name="campground[description]"
-                    id="title"
-                    placeholder="description"
-                    required
-                ></textarea>
-                <div class="valid-feedback">Champ valide !</div>
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea
+                            class="form-control"
+                            type="text"
+                            name="campground[description]"
+                            id="title"
+                            placeholder="description"
+                            required
+                        ></textarea>
+                        <div class="valid-feedback">Champ valide !</div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-success" type="submit">
+                            Ajouter le camping
+                        </button>
+                    </div>
+                </form>
+
+                <a class="btn btn-primary text-white" href="/campgrounds"
+                    >Tous les Camping</a
+                >
             </div>
-            <div class="mb-3">
-                <button class="btn btn-success" type="submit">Ajouter le camping</button>
-            </div>
-        </form>
-        <a href="/campgrounds">Tous les Camping</a>
+        </div>
     </div>
 </div>

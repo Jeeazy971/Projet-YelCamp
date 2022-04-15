@@ -18,7 +18,10 @@ async function seedDB() {
             description:
                 'Lorem ipsum dolor sit amet. Aut impedit Quis qui asperiores quae est enim distinctio sit quis cupiditate eum exercitationem nisi et quasi itaque? Id nobis nihil ab quidem inventore et libero illo.',
             price,
-            geometry: { type: 'Point', coordinates: [3.876734, 43.611242] },
+            geometry: {
+                type: 'Point',
+                coordinates: [cities[random1000].longitude, cities[random1000].latitude],
+            },
             images: [
                 {
                     url: 'https://res.cloudinary.com/dqr1seyu2/image/upload/v1649950806/YelpCamp/xeyxzvnazd6xhi7dowuc.jpg',
