@@ -2,8 +2,6 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-// mongodb+srv://admin-josue:<password>@yelpcamp.msqsf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-
 /***** PACKAGES *****/
 const express = require('express');
 const path = require('path');
@@ -13,6 +11,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const MongoDBStore = require('connect-mongo');
+const mongoose = require('mongoose');
+
 
 
 const app = express();
@@ -36,6 +37,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+
+mongoose
+    .connect(dbUrl)
+    .then(() => {
+        console.log('Connexion à la BDD réussie');
+    })
+    .catch((err) => {
+        console.log('Connexion impossible à la BDD');
+        console.log(err);
+    });
+
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: secret,
+    },
+});
+
+store.on('error', function (err) {
+    console.log('ERREUR SESSION STORE', err);
+});
 
 /**** SESSION ****/
 const sessionConfig = {
