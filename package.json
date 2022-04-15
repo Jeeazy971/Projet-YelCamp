@@ -1,10 +1,10 @@
 {
   "name": "yelpcamp",
   "version": "1.0.0",
-  "description": "Projet site YelpCamp",
+  "description": "Projet site YelpCamp v1",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Josué BAYIDIKILA",
   "license": "MIT",
