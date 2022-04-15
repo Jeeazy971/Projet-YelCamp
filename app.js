@@ -111,5 +111,5 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`Serveur lancé sur le PORT:${PORT}`);
+    console.log(`Serveur lancé sur le PORT:${port}`);
 });
