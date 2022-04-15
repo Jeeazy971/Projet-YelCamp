@@ -1,11 +1,24 @@
 const mongoose = require('mongoose');
 const Review = require('./review.model');
+const MongoDBStore = require('connect-mongo');
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
+
+const store = MongoDBStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: secret,
+    },
+});
+
+store.on('error', function (err) {
+    console.log('ERREUR SESSION STORE', err);
+});
 
 const Schema = mongoose.Schema;
-// 'mongodb://localhost:27017/yelp-camp'
 mongoose
-    .connect('mongodb://localhost:27017/yelp-camp')
+    .connect(dbUrl)
     .then(() => {
         console.log('Connexion à la BDD réussie');
     })
