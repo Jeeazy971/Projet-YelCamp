@@ -17,6 +17,7 @@ Sur ce projet j'ai utilisé :
 - [EJS](https://ejs.co/)
 - [JOI](https://joi.dev/api/?v=17.6.0)
 - [MAPBOX](https://www.mapbox.com/)
+- [CLOUDINARY](https://cloudinary.com/)
 
 ### 🤔 Les pré-requis pour utiliser le code source ?
 
@@ -26,6 +27,7 @@ Vous aurez avant-tout besoin d'installer :
 - [Node.JS la version LTS](https://nodejs.org/en/download/) installer le logiciel
 - [Git Bash](https://git-scm.com/downloads) installer le logiciel
 - [MAPBOX](https://www.mapbox.com/) créer un compte
+- [CLOUDINARY](https://cloudinary.com/) créer un compte
 
 ### Comment installer les modules ?
 
