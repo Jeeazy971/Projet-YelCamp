@@ -4,7 +4,7 @@
   "description": "Projet site YelpCamp v1",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "Josué BAYIDIKILA",
   "license": "MIT",
