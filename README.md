@@ -3,7 +3,7 @@
 Voici le projet YelpCamp, qui à pour but à l'utilisateur de pouvoir implanter des lieux de campings ainsi de commenter celle-ci.
 Le site est disponible [ici](https://guarded-wildwood-12191.herokuapp.com/)
 
-### 🛠 Quels sont les outils et langages utilisées ?
+## 🛠 Quels sont les outils et langages utilisées ?
 
 Sur ce projet j'ai utilisé :
 
@@ -19,7 +19,7 @@ Sur ce projet j'ai utilisé :
 - [MAPBOX](https://www.mapbox.com/)
 - [CLOUDINARY](https://cloudinary.com/)
 
-### 🤔 Les pré-requis pour utiliser le code source ?
+## 🤔 Les pré-requis pour utiliser le code source ?
 
 Vous aurez avant-tout besoin d'installer :
 
@@ -29,14 +29,27 @@ Vous aurez avant-tout besoin d'installer :
 - [MAPBOX](https://www.mapbox.com/) créer un compte
 - [CLOUDINARY](https://cloudinary.com/) créer un compte
 
-### Comment installer les modules ?
+## Comment installer les modules ?
 
 Après avoir installé les logiciels requis, ouvrez le dossier avec votre éditeur de commande (CLI) favoris.
 Puis faite clic-droit dans le dossier et cliquez sur `git bash here`, pour ecrire `npm install` qui installera les dépendances requis pour l'application.
 
+### L'Environnement Variables
+
+Pour exécuter ce projet, vous devrez également ajouter les variables d'environnement suivantes à votre fichier `.env`
+
+| Paramètre | Description                |
+| :-------- | :------------------------- |
+| `CLOUDINARY_CLOUD_NAME` | **Requis** la clé API |
+| `CLOUDINARY_KEY` | **Requis** la clé API |
+| `CLOUDINARY_SECRET` | **Requis** la clé API |
+| `MAPBOX_TOKEN` | **Requis** la clé API |
+
+et dans le fichier dans la syntaxe suivante : ``` CLOUDINARY_CLOUD_NAME=0123456 ```
+
 ### Comment lancer le projet
 
-Dans le CLI écrivez `npm start`
+Dans le CLI à la racine du dossier écrivez `npm start`
 
 
 Enjoy ! 🤩
