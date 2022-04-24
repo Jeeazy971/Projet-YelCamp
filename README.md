@@ -36,7 +36,7 @@ Puis faite clic-droit dans le dossier et cliquez sur `git bash here`, pour ecrir
 
 ### L'Environnement Variables
 
-Pour exécuter ce projet, vous devrez également ajouter les variables d'environnement suivantes à votre fichier `.env`
+Pour exécuter ce projet, vous devrez également ajouter les variables d'environnement suivantes à votre fichier en le créant la racine du projet `.env`
 
 | Paramètre | Description                |
 | :-------- | :------------------------- |
