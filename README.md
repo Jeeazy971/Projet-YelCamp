@@ -29,12 +29,12 @@ Vous aurez avant-tout besoin d'installer :
 - [MAPBOX](https://www.mapbox.com/) créer un compte
 - [CLOUDINARY](https://cloudinary.com/) créer un compte
 
-## Comment installer les modules ?
+## ⚙ Comment installer les modules ?
 
 Après avoir installé les logiciels requis, ouvrez le dossier avec votre éditeur de commande (CLI) favoris.
 Puis faite clic-droit dans le dossier et cliquez sur `git bash here`, pour ecrire `npm install` qui installera les dépendances requis pour l'application.
 
-### L'Environnement Variables
+### 🗝 L'Environnement Variables
 
 Pour exécuter ce projet, vous devrez également ajouter les variables d'environnement suivantes à votre fichier en le créant la racine du projet `.env`
 
@@ -47,11 +47,11 @@ Pour exécuter ce projet, vous devrez également ajouter les variables d'environ
 
 Et dans le fichier dans la syntaxe suivante : ``` CLOUDINARY_CLOUD_NAME=0123456 ```
 
-## Comment lancer le projet
+## ▶ Comment lancer le projet
 
 Dans le CLI à la racine du dossier écrivez `npm start`
 
-## Bonus ! Générer des données pour le projet 
+## 💾 Bonus ! Générer des données pour le projet 
 
 J'ai également laissé un dossier qui s'appelle seeds qui regroupe nom et ville aléatoire anglophone si vous le souhaiter.
 Pour générer les données dans la BDD du projet il faut impérativement installer `MongoDB`.
