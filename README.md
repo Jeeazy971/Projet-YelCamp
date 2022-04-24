@@ -51,5 +51,14 @@ et dans le fichier dans la syntaxe suivante : ``` CLOUDINARY_CLOUD_NAME=0123456 
 
 Dans le CLI à la racine du dossier écrivez `npm start`
 
+## Bonus ! Générer des données pour le projet 
+
+J'ai également laissé un dossier qui s'appelle seeds qui regroupe nom et ville aléatoire anglophone si vous le souhaiter.
+Pour générer les données dans la BDD du projet il faut impérativement installer `MongoDB`.
+
+Dès que cette condition est réunie, avec votre CLI (Invite de commande) vous vous mettez à la racine du projet puis vous faites : 
+`cd seeds` à ce moment vous vous retrouvez dans le dossier seeds puis vous écrivez toujours dans le CLI `node index.js`.
+
+
 
 Enjoy ! 🤩
