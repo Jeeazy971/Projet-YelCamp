@@ -47,7 +47,7 @@ Pour exécuter ce projet, vous devrez également ajouter les variables d'environ
 
 et dans le fichier dans la syntaxe suivante : ``` CLOUDINARY_CLOUD_NAME=0123456 ```
 
-### Comment lancer le projet
+## Comment lancer le projet
 
 Dans le CLI à la racine du dossier écrivez `npm start`
 
