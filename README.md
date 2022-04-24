@@ -45,7 +45,7 @@ Pour exécuter ce projet, vous devrez également ajouter les variables d'environ
 | `CLOUDINARY_SECRET` | **Requis** la clé API |
 | `MAPBOX_TOKEN` | **Requis** la clé API |
 
-et dans le fichier dans la syntaxe suivante : ``` CLOUDINARY_CLOUD_NAME=0123456 ```
+Et dans le fichier dans la syntaxe suivante : ``` CLOUDINARY_CLOUD_NAME=0123456 ```
 
 ## Comment lancer le projet
 
